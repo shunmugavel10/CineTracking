@@ -3,7 +3,7 @@ import { useRoute } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
-const MovieList = () => {
+const MovieDetail = () => {
 
     const route = useRoute();
     let { selectedMovie } = route.params;
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MovieList
+export default MovieDetail

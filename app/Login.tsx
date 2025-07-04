@@ -22,18 +22,18 @@ export default function LoginScreen() {
       <Text style={styles.userMail}>Email:</Text>
       <TextInput
         style={styles.input}
-        placeholder="Search..."
+        placeholder="Email"
         value={userEmail}
         onChangeText={text => setUserEmail(text)}
       />
       <Text style={styles.userMail}>Password:</Text>
       <TextInput
         style={styles.input}
-        placeholder="Search..."
+        placeholder="Password"
         value={userPassword}
         onChangeText={text => setPassword(text)}
       />
-      <Button title="Search" onPress={login} />
+      <Button title="Login" onPress={login} />
     </View>
   );
 }

@@ -26,9 +26,17 @@ const MovieList = () => {
     };
 
     async function addToFav(movie: { id: Key | null | undefined; poster_path: string; original_title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; release_date: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; vote_average: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) {
-        try {
-            await AsyncStorage.setItem('FavMovies', JSON.stringify(movie));
-            console.log('Data saved successfully!');
+         try {
+            const movies = await AsyncStorage.getItem('FavMovies');
+            if (movies){
+               let favMovies = JSON.parse(movies);
+                favMovies.push(movie);
+                await AsyncStorage.setItem('FavMovies', JSON.stringify(favMovies));
+            }else {
+                let favMovies = [Movie];
+                favMovies.push(movie);
+                await AsyncStorage.setItem('FavMovies', JSON.stringify(favMovies));
+            }
         } catch (e) {
             console.error('Error saving data:', e);
         }
